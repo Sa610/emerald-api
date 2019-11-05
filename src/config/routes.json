@@ -1,0 +1,8 @@
+[
+    {
+        "path":             "/",
+        "controllerAction": "home#index",
+        "method":           "GET",
+        "as":               "home"
+    }
+]
