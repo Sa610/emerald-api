@@ -3,15 +3,15 @@ import path         from 'path';
 import fs           from 'fs';
 import { Model }    from 'objection';
 
-import Agate        from '../lib/core/emerald';
-import KnexConfig   from '../config/db';
+import Agate        from './lib/core/emerald';
+import KnexConfig   from './config/db';
 
 import Knex         from 'knex';
 
 // const Knex          = require('knex');
 const app           = express();
 const agate         = new Agate(__dirname);
-const knex          = Knex(KnexConfig.development);
+// const knex          = Knex(KnexConfig.development);
 
 const PORT          = process.env.port || 8080;
 
@@ -38,10 +38,10 @@ const PORT          = process.env.port || 8080;
 //         agate.compileAssets(assetsList);
 // });
 
-app.use ((req, res, next) => {
-    console.log('Time:', Date.now());
-    next();
-});
+// app.use ((req, res, next) => {
+//     console.log('Time:', Date.now());
+//     next();
+// });
 
 // Create main service
 app.get('/', (req, res) => {

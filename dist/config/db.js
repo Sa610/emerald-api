@@ -1,8 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 class KnexConfig {
 }
-exports.default = KnexConfig;
 KnexConfig.development = {
     client: 'mysql2',
     connection: {
@@ -21,4 +19,6 @@ KnexConfig.production = {
         database: 'agate'
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = KnexConfig;
 //# sourceMappingURL=db.js.map

@@ -1,10 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const active_controller_1 = __importDefault(require("../../lib/core/active_controller"));
+const active_controller_1 = require("../../lib/core/active_controller");
 class ApplicationController extends active_controller_1.default {
 }
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ApplicationController;
 //# sourceMappingURL=application_controller.js.map

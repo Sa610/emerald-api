@@ -1,21 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
-const lodash_1 = __importDefault(require("lodash"));
-const Controllers = __importStar(require("./controllers_module"));
-const environment_1 = __importDefault(require("./environment"));
-const base_error_1 = require("./errors/base_error");
-const route_1 = __importDefault(require("./route"));
+const fs_1 = require('fs');
+const lodash_1 = require('lodash');
+const Controllers = require('./controllers_module');
+const environment_1 = require('./environment');
+const base_error_1 = require('./errors/base_error');
+const route_1 = require('./route');
 // const sass                  = require('sass');
 // const LogColors             = require('./utils/log_colors');
 class Agate {
@@ -80,8 +69,9 @@ class Agate {
         });
     }
     declareUrlHelper() {
-        return null;
+        console.log("Helloooow");
     }
 }
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Agate;
 //# sourceMappingURL=emerald.js.map

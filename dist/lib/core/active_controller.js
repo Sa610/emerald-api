@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 class ActiveController {
     constructor(request, env) {
         this.scope = {};
@@ -8,5 +7,6 @@ class ActiveController {
         this.env = env;
     }
 }
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ActiveController;
 //# sourceMappingURL=active_controller.js.map
