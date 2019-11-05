@@ -1,8 +1,8 @@
 [
     {
         "path":             "/",
-        "controllerAction": "home#welcome",
+        "controllerAction": "home#index",
         "method":           "GET",
-        "as":               "homeWelcome"
+        "as":               "home"
     }
 ]

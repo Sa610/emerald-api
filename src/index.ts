@@ -38,10 +38,17 @@ const PORT          = process.env.port || 8080;
 //         agate.compileAssets(assetsList);
 // });
 
+app.use ((req, res, next) => {
+    console.log('Time:', Date.now());
+    next();
+});
+
 // Create main service
-// app.use('/*', (req, res) => {
-//     agate.call(req, res);
-// });
+app.get('/', (req, res) => {
+    // agate.call(req, res);
+    res.send('USER');
+    console.log("si ci sentro qui");
+});
 
 console.log(`Running server on port: http://localhost:${PORT}\n`);
 app.listen(PORT);
