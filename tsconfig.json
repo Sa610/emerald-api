@@ -6,6 +6,9 @@
         "esModuleInterop": true,
         "noImplicitAny": false,
         "sourceMap": false,
-        "outDir": "./dist"
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "outDir": "./dist",
+        "rootDir": "./src"
     }
 }
