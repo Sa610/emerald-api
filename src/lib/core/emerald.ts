@@ -46,7 +46,16 @@ export default class Emerald {
         const requestUrl: string = req.originalUrl.replace(/(.)\/$/, "$1");
 
         return this.routeList.filter((route: any) => {
-            return  req.method.toLowerCase() === route.method.toLowerCase() && requestUrl.match(new RegExp(`^${route.path}$`));
+            console.log(req.method.toLowerCase() + ' === ' + route.method.toLowerCase());
+            console.log(requestUrl + ' match(' + route.path + ')');
+
+            let routePath: string = route.path;
+
+            routePath = routePath.replace(/:num/, '[0-9]+');
+            routePath = routePath.replace(/:str/, '[a-z]+');
+
+            return  req.method.toLowerCase() === route.method.toLowerCase() && 
+                    requestUrl.match(new RegExp(`^${routePath}$`));
         });
     }
 }

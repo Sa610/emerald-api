@@ -3,7 +3,7 @@ import path         from 'path';
 import fs           from 'fs';
 import { Model }    from 'objection';
 
-import Emerald        from './lib/core/emerald';
+import Emerald      from './lib/core/emerald';
 import KnexConfig   from './config/db';
 
 import Knex         from 'knex';
@@ -17,7 +17,7 @@ const PORT          = process.env.port || 8080;
 Model.knex(knex);
 
 // Create main service
-app.get('/', (req, res) => {
+app.use('/*', (req, res) => {
     emerald.call(req, res);
 });
 

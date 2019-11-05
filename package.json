@@ -1,7 +1,7 @@
 {
     "name": "emerald-api",
     "version": "1.0.0",
-    "description": "",
+    "description": "TBD",
     "main": "dist/index.js",
     "scripts": {
         "production": "./node_modules/.bin/ts-node -- ./src/index.ts",
