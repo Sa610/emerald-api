@@ -3,9 +3,7 @@ import { Model } from 'objection';
 export default class ActiveModel extends Model {
     protected static modelName = 'active_model';
 
-    constructor() {
-        super();
-    }
+    constructor() { super(); }
 
     // Table name is the only required property.
     public static get tableName(): string {

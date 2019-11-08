@@ -10,7 +10,7 @@ import Knex         from 'knex';
 
 const app           = express();
 const emerald       = new Emerald(__dirname);
-const knex          = Knex(KnexConfig.development);
+const knex          = Knex(KnexConfig.DEVELOPMENT);
 
 const PORT          = process.env.port || 8080;
 

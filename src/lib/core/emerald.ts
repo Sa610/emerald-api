@@ -27,7 +27,7 @@ export default class Emerald {
 
         if(matchingRoutes.length > 0) {
             const route           = new Route(_.last(matchingRoutes));
-            const ctrl            = new (Controllers as any)[_.camelCase(route.controller) + "Controller"](req);
+            const ctrl            = new Controllers[_.startCase(route.controller) + "Controller"](req);
 
             ctrl[route.action]();
 
@@ -46,9 +46,6 @@ export default class Emerald {
         const requestUrl: string = req.originalUrl.replace(/(.)\/$/, "$1");
 
         return this.routeList.filter((route: any) => {
-            console.log(req.method.toLowerCase() + ' === ' + route.method.toLowerCase());
-            console.log(requestUrl + ' match(' + route.path + ')');
-
             let routePath: string = route.path;
 
             routePath = routePath.replace(/:num/, '[0-9]+');

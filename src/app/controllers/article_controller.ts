@@ -1,10 +1,10 @@
 import ApplicationController    from "./application_controller";
 
-export default class HomeController extends ApplicationController {
+export default class ArticleController extends ApplicationController {
     public index(): void {
-        this.response = {
-            'Message': 'Index'
-        };
+        this.fetchResource('1');
+
+        this.response = this.resource;
     }
 
     public show(): void {
