@@ -29,14 +29,14 @@ export default class Emerald {
             const route           = new Route(_.last(matchingRoutes));
             const ctrl            = new Controllers[_.startCase(route.controller) + "Controller"](req);
 
-            ctrl[route.action]();
-
-            res.json(ctrl.response);
-            res.status(ctrl.status);
+            ctrl[route.action]().then((response) => {
+                res.json(ctrl.response);
+                res.status(ctrl.status);
+                res.end();
+            }).catch((error) => {});
+            
 
             console.log(`${req.method}: ${req.originalUrl} - ${route.controllerAction}\n`);
-
-            res.end();
         } else {
             new NotFoundError(req, res);
         }

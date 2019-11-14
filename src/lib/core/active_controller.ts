@@ -1,5 +1,7 @@
 import HTTPStatusCode   from './utils/http_status_code';
 
+import { raw } from 'objection';
+
 import * as Models      from './models_module';
 
 import { 
@@ -7,7 +9,7 @@ import {
 }  from './errors/base_error';
 
 export default class ActiveController {
-    public      response:   any             = {};
+    public      response:   any;
     public      status:     HTTPStatusCode  = HTTPStatusCode.ACCEPTED;
 
     protected   request:    any;
@@ -22,26 +24,57 @@ export default class ActiveController {
     }
 
     // Generic index function
-    protected index(): void {
-        this.resource = this.fetchResources('1');
+    public Index(queryBuilderFnc: Function, success: Function, failed: Function = (() => {}) ): Promise<any> {
+        let queryBuilder = this.fetchResources();
+
+        if(queryBuilder !== null)
+            queryBuilderFnc(queryBuilder);
+            
+        return new Promise((resolve, reject) => {
+            queryBuilder.then((resource: any) => {
+                this.response = resource;
+
+                success();
+                resolve('OK');
+            }).catch((reason) => {
+                failed(reason);
+                reject(reason);
+            });
+        });
     }
 
     // Generic show function
-    protected show(): void {
-        this.resource = this.fetchResource('1');
+    protected Show(id: string, queryBuilderFnc: Function, success: Function, failed: Function = () => {}): Promise<any> {
+        let queryBuilder = this.fetchResources();
+
+        if(queryBuilder !== null)
+            queryBuilderFnc(queryBuilder);
+
+        return new Promise((resolve, reject) => {
+            this.fetchResource(id).then((resource: any) => {
+                this.response = resource;
+
+                success();
+                resolve('OK');
+            }).catch((reason) => {
+                failed(reason);
+                reject(reason);
+            });
+        });
     }
 
     // Extract a resource based on the ID on the DB
-    protected async fetchResource(id: string): Promise<void> {
+    protected fetchResource(id: string): Promise<any> {
         const relatedModel = this.getRelatedModel();
 
-        // LA QUESTIONE DELL' ASYNC MI STA CREANDO PROBLEMI
-        this.resource = await relatedModel.constructor.query().findById(id);
+        return relatedModel.constructor.query().findById(id);
     }
 
     // Extract a number of records based on a query from the DB
-    protected fetchResources(query: string): void {
-        
+    protected fetchResources(): Promise<any> {
+        const relatedModel = this.getRelatedModel();
+
+        return relatedModel.constructor.query();
     }
 
     // Get the related model class from the controller name
