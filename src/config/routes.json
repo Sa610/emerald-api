@@ -1,11 +1,11 @@
 [
     {
-        "path":             "/",
+        "path":             "/articles",
         "controllerAction": "article#index",
         "method":           "GET"
     },
     {
-        "path":             "/:num",
+        "path":             "/articles/:id",
         "controllerAction": "article#show",
         "method":           "GET"
     }

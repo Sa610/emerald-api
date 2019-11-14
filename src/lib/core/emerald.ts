@@ -8,6 +8,7 @@ import Environment          from './environment';
 import { NotFoundError }    from './errors/base_error';
 
 import Route                from './route';
+import Request              from './request';
 
 import LogColors            from './utils/log_colors';
 
@@ -23,13 +24,14 @@ export default class Emerald {
     }
 
     public call(req: any, res: any): void {
-        const matchingRoutes = this.getMatchingRoutes(req);
+        const matchingRoutes    = this.getMatchingRoutes(req);
+        const request           = new Request(req, matchingRoutes);
 
         if(matchingRoutes.length > 0) {
             const route           = new Route(_.last(matchingRoutes));
             const ctrl            = new Controllers[_.startCase(route.controller) + "Controller"](req);
 
-            ctrl[route.action]().then((response) => {
+            ctrl[route.action](request).then((response) => {
                 res.json(ctrl.response);
                 res.status(ctrl.status);
                 res.end();
@@ -48,8 +50,8 @@ export default class Emerald {
         return this.routeList.filter((route: any) => {
             let routePath: string = route.path;
 
-            routePath = routePath.replace(/:num/, '[0-9]+');
-            routePath = routePath.replace(/:str/, '[a-z]+');
+            routePath = routePath.replace(/:[a-z]+/, '[a-z0-9]+');
+            // routePath = routePath.replace(/:str/, '[a-z]+');
 
             return  req.method.toLowerCase() === route.method.toLowerCase() && 
                     requestUrl.match(new RegExp(`^${routePath}$`));
