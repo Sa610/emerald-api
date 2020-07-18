@@ -15,7 +15,7 @@
     "dependencies": {
         "express": "^4.17.1",
         "knex": "^0.20.1",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.19",
         "mysql2": "^2.0.0",
         "objection": "^1.6.11",
         "pug": "^2.0.4"
